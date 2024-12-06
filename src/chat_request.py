@@ -30,13 +30,7 @@ def get_embedding(question: str):
 def get_response(question, chat_history):
     print("inputs:", question)
     embedding = get_embedding(question)
-    if embedding is None:
-        raise ValueError("Embedding should not be None.")
-        
     context = get_context(question, embedding)
-    if context is None:
-        raise ValueError("Context should not be None.")
-        
     print("context:", context)
     print("getting result...")
 
@@ -53,7 +47,7 @@ def get_response(question, chat_history):
     data_path = os.path.join(pathlib.Path(__file__).parent.resolve(), "./chat.prompty")
     prompty_obj = Prompty.load(data_path, model=override_model)
 
-    result = prompty_obj(question=question, documents=context)
+    result = prompty_obj(question = question, documents = context)
 
     print("result: ", result)
 
@@ -61,8 +55,3 @@ def get_response(question, chat_history):
 
 if __name__ == "__main__":
     get_response("What is the size of the moon?", [])
-    
-
-
-
-    
